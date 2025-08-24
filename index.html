@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Simple Page</title>
+  <title>Live Message</title>
 </head>
 <body>
-    <h1 id="message">Loading message...</h1>
+  <h1>Latest Message:</h1>
+  <pre id="msg"></pre>
 
-    <script>
-        // Read the message from a simple text file (message.txt)
-        fetch('message.txt')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('message').innerText = data;
-            })
-            .catch(err => {
-                document.getElementById('message').innerText = "No message found!";
-                console.error(err);
-            });
-    </script>
+  <script>
+    fetch("message.txt?" + new Date().getTime())  // cache-busting
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById("msg").innerText = text;
+      });
+  </script>
 </body>
 </html>
