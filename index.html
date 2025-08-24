@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Simple Page</title>
+</head>
+<body>
+    <h1 id="message">Loading message...</h1>
+
+    <script>
+        // Read the message from a simple text file (message.txt)
+        fetch('message.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('message').innerText = data;
+            })
+            .catch(err => {
+                document.getElementById('message').innerText = "No message found!";
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
